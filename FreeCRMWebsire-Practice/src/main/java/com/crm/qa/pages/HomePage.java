@@ -20,6 +20,8 @@ public class HomePage extends TestBase
 	@FindBy(xpath="//span[text()='Tasks']")
 	WebElement Task_Link;
 	
+	
+	
 	//initializing HomePage
 	public HomePage()
 	{
@@ -38,6 +40,7 @@ public class HomePage extends TestBase
 	public ContactsPage ContactClick()
 	{
 		Contacts_links.click();
+		
 		return new ContactsPage();
 	}
 	

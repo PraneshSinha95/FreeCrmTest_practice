@@ -8,10 +8,11 @@ import org.testng.annotations.Test;
 import com.crm.qa.base.TestBase;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
-
+import com.crm.qa.pages.ContactsPage;
 public class HomePageTest extends TestBase {
 	LoginPage LoginPage;
 	HomePage HomePage;
+	ContactsPage ContactsPage;
 
 	public HomePageTest() {
 		super();
@@ -32,10 +33,20 @@ public class HomePageTest extends TestBase {
 	}
 	
 	@Test(priority=2)
-	public void VerifyUserNameTest()
+	public void VerifyUserNameTest() throws InterruptedException
 	{
+		Thread.sleep(3000);
 		String UserName=HomePage.VerifyUserName();
 		Assert.assertEquals(UserName, "Pranesh Sinha");
+	}
+	@Test (priority=3)
+	public void VerifyContactPageClick()
+	{
+		ContactsPage=HomePage.ContactClick();
+		
+		String ContactsPageTitle=ContactsPage.ContactsPageTitle();
+		Assert.assertEquals(ContactsPageTitle, "Contacts","No title Page is wrong");
+		
 	}
 	
 	
