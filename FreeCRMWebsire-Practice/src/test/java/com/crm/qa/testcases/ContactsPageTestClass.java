@@ -3,6 +3,7 @@ package com.crm.qa.testcases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.crm.qa.Utillity.TestUtil;
@@ -32,27 +33,39 @@ public class ContactsPageTestClass extends TestBase
 		ContactsPage=Homepage.ContactClick();
 		ContactsPage=new ContactsPage();
 	}
-	@Test(priority=1)
-	public void VerifyContactLabel()
-	{
-		Assert.assertEquals(ContactsPage.ContactsPageTitle(), "Contacts","Name is not Contacts");
-	}
+//	@Test(priority=1)
+//	public void VerifyContactLabel()
+//	{
+//		Assert.assertEquals(ContactsPage.ContactsPageTitle(), "Contacts","Name is not Contacts");
+//	}
+//	
+//	@Test(priority=2)
+//	public void SelectContactTest()
+//	{
+//	ContactsPage.SelectContactByName("alok nath");
+//	}
+//	@Test(priority=3)
+//	public void SelectMultipleContactTest()
+//	{
+//		ContactsPage.SelectContactByName("Bipin Kumar");
+//		ContactsPage.SelectContactByName("alok nath");
+//	}
 	
-	@Test(priority=2)
-	public void SelectContactTest()
+	@DataProvider 
+	
+	
+	@Test(priority=4)
+	public void ValidateCreateNewContact() throws InterruptedException
 	{
-	ContactsPage.SelectContactByName("alok nath");
-	}
-	@Test(priority=3)
-	public void SelectMultipleContactTest()
-	{
-		ContactsPage.SelectContactByName("Bipin Kumar");
-		ContactsPage.SelectContactByName("alok nath");
+		ContactsPage.NewButtonClick();
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+		//ContactsPage.CreateNewContact("Nesh", "Sinha", "Sinha");
 	}
 	
 	@AfterMethod
 	public void TearDown()
 	{
-		driver.close();
+		//driver.close();
 	}
 }
