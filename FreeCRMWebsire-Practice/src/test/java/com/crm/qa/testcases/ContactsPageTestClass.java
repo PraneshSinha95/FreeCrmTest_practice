@@ -1,5 +1,8 @@
 package com.crm.qa.testcases;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,6 +27,7 @@ public class ContactsPageTestClass extends TestBase
 		super();
 	}
 	
+	String SheetName="Contact";
 	@BeforeMethod
 	public void SetUp()
 	{
@@ -52,20 +56,25 @@ public class ContactsPageTestClass extends TestBase
 //	}
 	
 	@DataProvider 
+	public Object[][] GetCRMTestData()
+	{
+	Object [] [] data= TestUtil.getTestData(SheetName);
+	return data;
+	}
 	
 	
-	@Test(priority=4)
-	public void ValidateCreateNewContact() throws InterruptedException
+	@Test(priority=4, dataProvider="GetCRMTestData")
+	public void ValidateCreateNewContact(String FirstName, String Mname, String LastName) throws InterruptedException
 	{
 		ContactsPage.NewButtonClick();
-		Thread.sleep(3000);
-		driver.navigate().refresh();
+		
+		ContactsPage.CreateNewContact(FirstName, Mname, LastName);
 		//ContactsPage.CreateNewContact("Nesh", "Sinha", "Sinha");
 	}
 	
 	@AfterMethod
 	public void TearDown()
 	{
-		//driver.close();
+		driver.close();
 	}
 }

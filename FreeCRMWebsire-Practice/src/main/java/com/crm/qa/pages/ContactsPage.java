@@ -19,7 +19,7 @@ public class ContactsPage extends TestBase
 	WebElement New_button;
 	
 	@FindBy(xpath="//input[@name='first_name']")
-	WebElement First_name;
+	public static WebElement First_name;
 	
 	
 	@FindBy(name="last_name")
@@ -34,6 +34,10 @@ public class ContactsPage extends TestBase
 	public ContactsPage()
 	{
 		PageFactory.initElements(driver, this);
+	}
+	public void FirstNameFiled()
+	{
+		 First_name.isEnabled();
 	}
 	
 	public String ContactsPageTitle()
